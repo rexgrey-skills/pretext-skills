@@ -1,9 +1,14 @@
-import { prepare, layout } from '@chenglou/pretext';
+import { prepare, layout } from '@chenglou/pretext'
 
-const textareaValue = "Multi-line\ntextarea content\ngoes here";
-const textareaWidth = 300;
+// Use { whiteSpace: 'pre-wrap' } for textarea-like text where
+// ordinary spaces, \t tabs, and \n hard breaks stay visible.
+// Tabs follow default browser-style tab-size: 8 stops.
+const textareaValue = "Multi-line\ntextarea content\twith tabs\ngoes here"
+const textareaWidth = 300
 
-const prepared = prepare(textareaValue, "16px Inter", { whiteSpace: "pre-wrap" });
-const { height } = layout(prepared, textareaWidth, 24);
+const prepared = prepare(textareaValue, '16px Inter', { whiteSpace: 'pre-wrap' })
+const { height, lineCount } = layout(prepared, textareaWidth, 24)
 
-console.log(`Textarea height: ${height}px`);
+// Auto-size the textarea element
+// textarea.style.height = `${height}px`
+console.log(`Textarea height: ${height}px, Lines: ${lineCount}`)
